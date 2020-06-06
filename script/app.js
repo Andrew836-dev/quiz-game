@@ -7,13 +7,19 @@ var score, currentQuestion;
 var questions = [
     {
         q: "how much wood would a wood chuck chuck?",
-        a: ["if a wood chuck could chuck wood", "a wood chuck would chuck", "as much as a wood chuck could chuck", "if a wood chuck could chuck wood"],
-        correct: 0
+        a: ["if a wood chuck could chuck wood",
+            "a wood chuck would chuck",
+            "as much as a wood chuck could chuck",
+            "if a wood chuck could chuck wood"],
+        correctIndex: 0
     },
     {
         q: "",
-        a: ["", "", "", ""],
-        correct: 1
+        a: ["",
+        "",
+        "",
+        ""],
+        correctIndex: 1
     }];
 
 
@@ -32,13 +38,13 @@ function init() {
 function handleClick(event) {
     if (event.target.matches("button")) {
         chosenAnswer = event.target.getAttribute("data-index");
-        if (chosenAnswer == questions[currentQuestion].correct) {
+        if (chosenAnswer == questions[currentQuestion].correctIndex) {
             event.target.parentElement.classList.add("correct");
             correct();
         }
         else {
             event.target.parentElement.classList.add("wrong");
-            questionList.children[questions[currentQuestion].correct].classList.add("correct");
+            questionList.children[questions[currentQuestion].correctIndex].classList.add("correct");
             wrong();
         }
     }
@@ -60,7 +66,7 @@ function renderScore() {
 }
 
 function chooseNextQuestion() {
-    if(currentQuestion < questions.length - 1) {
+    if (currentQuestion < questions.length - 1) {
         currentQuestion++;
         renderQuestion(currentQuestion);
     }
@@ -86,7 +92,7 @@ function renderQuestion(index) {
 function endScreen() {
     questionList.innerHTML = "";
     questionList.textContent = "Thanks for playing";
-    var li= document.createElement('li');
+    var li = document.createElement('li');
     li.style.listStyle = "none";
     li.textContent = "Your final Score was " + score;
     questionList.append(li);
