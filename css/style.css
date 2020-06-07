@@ -1,8 +1,20 @@
 .correct {
-    background-color: lawngreen;
+    color: white!important;
+    background-color: rgb(30, 153, 5)!important;
 }
 
 .wrong {
-    list-style-type: decimal;
-    background-color: darksalmon;
+    color: white!important;
+    background-color: #e40606!important;
+}
+
+li {
+    background-color: blueviolet;
+    color: white;
+}
+
+li:hover {
+    background-color: white;
+    color: blueviolet;
+    border: 1px solid blueviolet;
 }
