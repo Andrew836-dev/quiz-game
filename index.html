@@ -1,35 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>The Quizzer.</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
     <link rel="stylesheet" href="./css/style.css" />
 </head>
+
 <body>
-    <div class="container">
+    <div class="container text-center">
         <h1 id="title"></h1>
-        <div id="question-box" class="col-12"></div>
-        <div>
-            <ol id="question-list" class="btn-group-vertical">
-            </ol>
-            <p id="info-text">
-                <span class="score-group">
-                    Score: 
-                    <span id="score-text">
-                        0
+        <div class="">
+            <h3 id="question-box" class="col-12"></h3>
+            <div class="container p-2">
+                <div id="question-list" class="justify-content-center">
+                </div>
+                <p id="info-text" class="">
+                    <span class="score-group">
+                        Score:
+                        <span id="score-text">
+                            0
+                        </span>
+                        Time Left:
+                        <span id="time-text">
+                            0
+                        </span>
                     </span>
-                    Time Left: 
-                    <span id="time-text">
-                        0
-                    </span>
-                </span>
-            </p>
-            
+                </p>
+            </div>
         </div>
     </div>
 </body>
-
+<script type="text/javascript" src="./script/setQuestions.js"></script>
 <script type="text/javascript" src="./script/app.js"></script>
+
 </html>

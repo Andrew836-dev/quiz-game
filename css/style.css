@@ -8,13 +8,24 @@
     background-color: #e40606!important;
 }
 
+ol {
+    text-align: center;
+    background-color: #d3d3d3;
+}
+.container {
+    max-width: 720px;
+}
+
 li {
     background-color: blueviolet;
     color: white;
+    border: 1px solid;
+    border-radius: 0.5rem;
+    /* margin: 0.25rem; */
+    list-style: decimal;
 }
 
 li:hover {
     background-color: white;
     color: blueviolet;
-    border: 1px solid blueviolet;
 }
