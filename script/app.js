@@ -187,6 +187,7 @@ function renderQuestion(index) {
 
 function endScreen() {
     var li = document.createElement('li');
+    var li2 = document.createElement('li');
     var textField = document.createElement('input');
     var pEl2 = document.createElement('p');
     pause = true;
@@ -195,8 +196,10 @@ function endScreen() {
     questionList.classList.remove('row');
     questionBox.textContent = "Thanks for playing";
     li.style.listStyle = "none";
-    li.textContent = `Your final Score was ${score} out of ${questions.length}\nPlus ${totalSeconds} for your remaining time.`;
+    li.textContent = `Your final correct answer score was ${score} out of ${questions.length}`;
     questionList.append(li);
+    li2.style.listStyle = "none";
+    li2.textContent = `Plus ${totalSeconds} for your remaining time. ${totalSeconds + score} points!`
     textField.setAttribute("type", "text")
     questionList.appendChild(textField);
     pEl2.textContent = "Enter your initials to view high scores.";

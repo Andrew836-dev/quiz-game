@@ -9,11 +9,11 @@ function setQuestions() {
             correctIndex: 3
         },
         {
-            q: "What is the best construction of a for loop?",
-            a: ["( var i = 0; i < targetnumber; i++ )",
-                "( i = target; i === true )",
-                "( var i = 0; i < 5 ; i-- )",
-                "( ; false;  )"],
+            q: "What is the standard construction of a for loop?",
+            a: ["for ( var i = 0; i < targetnumber; i++ )",
+                "for ( i = target; i === true )",
+                "for ( var i = 0; i < 5 ; i-- )",
+                "for ( ; false;  )"],
             correctIndex: 0
         },
         {
