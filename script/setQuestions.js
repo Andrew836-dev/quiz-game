@@ -1,5 +1,11 @@
+// questions is a variable declared in app.js
+// perhaps this would have been compartmentalized better if it returned a questions object rather than just setting it.
+// to read the first question is questions[0].q
+// the first offered answer to the first question is questions[0].a[0]
+// the correct answer is at the questions[0].a[questions[0].correctIndex]
+
 function setQuestions() {
-    questions = [
+    var questions = [
         {
             q: "Arrays in Javascript can be used to contain _____.",
             a: ["Numbers",
@@ -63,4 +69,5 @@ function setQuestions() {
             correctIndex: 1
         }
     ];
+    return questions;
 }
