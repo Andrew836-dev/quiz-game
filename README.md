@@ -1,9 +1,9 @@
 # Javascript quiz
 ## Table of Contents
-[1. What is it?](https://github.com/Andrew836-dev/quiz-game#what)
-[2. Screenshot](https://github.com/Andrw836-dev/quiz-game#screenshot)
-[3. How Does it Work?](https://github.com/Andrw836-dev/quiz-game#screenshot)
-[4. Link to Deployed App](https://github.com/Andrw836-dev/quiz-game#link)
+* [What is it?](https://github.com/Andrew836-dev/quiz-game#what-is-it)
+* [Screenshot](https://github.com/Andrew836-dev/quiz-game#screenshot)
+* [How Does it Work?](https://github.com/Andrew836-dev/quiz-game#how-does-it-work)
+* [Link to Deployed App](https://github.com/Andrew836-dev/quiz-game#link)
 ## What is it?
 ### A responsive quiz interface.
 This is homework for week 4 of my coding bootcamp. The goal is to use javascript to make a responsive quiz app, using localstorage for a high-score list. I've moved the questionlist into a separate file for easier updating.
