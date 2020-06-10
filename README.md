@@ -1,16 +1,19 @@
-## quiz-game
-A responsive quiz interface
-
+# Javascript quiz
+## Table of Contents
+[1. What is it?](https://github.com/Andrew836-dev/quiz-game#what)
+[2. Screenshot](https://github.com/Andrw836-dev/quiz-game#screenshot)
+[3. How Does it Work?](https://github.com/Andrw836-dev/quiz-game#screenshot)
+[4. Link to Deployed App](https://github.com/Andrw836-dev/quiz-game#link)
+## What is it?
+### A responsive quiz interface.
 This is homework for week 4 of my coding bootcamp. The goal is to use javascript to make a responsive quiz app, using localstorage for a high-score list. I've moved the questionlist into a separate file for easier updating.
-
-[live site](https://andrew836-dev.github.io/quiz-game/)
-
-Screenshot
+## Screenshot
 ![Image of one question, showing widescreen layout, timer and score](./img/quiz-preview.png "Final appearance")
+## How does it work?
+I chose to make a basic page of HTML elements and then some document.createElement instructions in the Javascript. Every time the user clicks an option the inner html of the question-list div is completely cleared and any required components are created or altered as needed and then appended.
 
+Bootstrap is utilised for the font and initial margins, also for the row class and easy flex-box settings.
 
-
-
-
-Layout Plan
-![Images for the intended visual layout of the app at different breakpoints](./img/quizzer-concept.png "Part of my planning stage")
+'li' objects have been given a :hover property in CSS so they will change colour to make it look more dynamic.
+## Link
+[live site](https://andrew836-dev.github.io/quiz-game/)
