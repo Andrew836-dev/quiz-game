@@ -9,7 +9,7 @@ var startButtonEl = document.createElement('button');
 // these variables are initialised in init()
 var state, highList;
 // these variables are initialised in start()
-var score, currentQuestion, totalSeconds, timer, questions, pause;
+var score, currentQuestion, totalSeconds, timer, questions;
 // these variables are initialised when they are called in handleClick 
 var timeOut;
 // these variables are initialised in addHighScore
@@ -27,13 +27,12 @@ function retrievHighScores() {
 
 // menu to begin the game
 function init() {
-    // attempts to retrieve highscores from localStorage
     highList = retrievHighScores();
     // sets state for delegation
     state = "start-menu";
     // sets appearance of start menu
     titleEl.textContent = "Javascript Quizzer";
-    questionBox.textContent = "Answer the questions as quickly as you can, you earn 1 point for each correct answer and 1 point for each second left when you have answered every question."
+    questionBox.textContent = "Answer the questions as quickly as you can, you earn 1 point for each correct answer and lose 5 seconds for each incorrect answer."
     questionList.innerHTML = "";
     startButtonEl.textContent = "Click to Begin!";
     questionList.append(startButtonEl);
@@ -53,7 +52,7 @@ function endScreen() {
     var nameField = document.createElement('input');
     var informativeText = document.createElement('p');
     // this makes sure that clicking the li objects does nothing
-    pause = true;
+    state = "end-screen";
     clearInterval(timer);
     // clears the question area
     questionList.innerHTML = "";
@@ -96,14 +95,11 @@ function updateTime() {
 }
 
 function start() {
-    // sets state for delegation (This one not used at this stage, kept in for potential future need)
-    state = "quiz";
     // boolean used between each answer to prevent repeated clicking while answers are being displayed.
     // this prevents free points or excess timeloss from each question.
-    pause = false;
+    state = "playing";
     // sets the question list from setQuestions.js
     questions = setQuestions();
-    // sets the total number of seconds, and update time reduces this total every second.
     totalSeconds = 100;
     timer = setInterval(updateTime, 1000);
     score = 0;
@@ -165,14 +161,13 @@ function displayHighScore() {
     // adds each score of the high score list to the display
     highList.forEach(element => {
         var li = document.createElement('li');
-        li.textContent = element[0] + ", " + element[1];
+        li.textContent = `${element[0]}, ${element[1]} points.`;
         // checks if there is a recent high score, then compares the name to the current name
         if (newHigh && element[0] == newHigh[0]) {
             // makes the background green
             li.classList.add('correct');
-            // checks if the recent score is the same as the current score
+            // checks if the most recent score is the same as the current score
             if (element[1] == newHigh[1]) {
-                // adds arrows so you know this is your most recent score
                 li.textContent = "---> " + li.textContent + " <---";
             }
         }
@@ -201,47 +196,42 @@ function chooseNextQuestion() {
     else {
         endScreen();
     }
-    pause = false;
+    state = "playing";
 }
 
-// function for event delegation of key strokes
 function handleKey(event) {
-    // keyCode 13 is the enter key
-    if (event.target.matches('input')) {
+    if (state == "end-screen" && event.target.matches('input')) {
+        // keyCode 13 is the enter key
         if (event.keyCode == 13) {
-            // trims the input to prevent whitespace overflow
-            // and adds the name to the high score list
             addHighScore(event.target.value.trim());
-            // display the high score list
             displayHighScore();
         }
     }
 }
 
 function handleClick(event) {
-    // handler for button clicks
     if (event.target.matches('button')) {
         if (state == 'start-menu') {
             if (event.target.id == 'high-score') {
                 displayHighScore();
             }
             else {
+                // to start playing the game
                 start();
             }
         }
         else if (state == 'high-scores') {
-            // if you click the clear scores button, it will clear the scores then return you to the start menu
             if (event.target.id == 'clear-scores') {
                 localStorage.removeItem('highScores');
             }
+            // to go to the home menu
             init();
         }
     }
-    // handler for answering quiz questions
-    else if (event.target.matches('li') && !pause) {
+    // This bit is for answering quiz questions
+    else if (event.target.matches('li') && state === "playing") {
         chosenAnswer = event.target.getAttribute('data-index');
         if (chosenAnswer == questions[currentQuestion].correctIndex) {
-            // function to increment score, turn the clicked object green and update score display
             event.target.classList.add('correct');
             score++;
             scoreEl.textContent = score;
@@ -259,10 +249,9 @@ function handleClick(event) {
                 totalSeconds = 0;
             }
         }
-        // this boolean prevents getting bonus points while the game is paused, chooseNextQuestion returns it to false
-        pause = true;
-        // I wasn't sure if I needed the variable, but it works so I'm not going to mess with it.
-        timeOut = setTimeout(chooseNextQuestion, 1000);
+        // this state prevents getting bonus points while the game should be paused
+        state = "paused";
+        setTimeout(chooseNextQuestion, 1000);
     }
 }
 
