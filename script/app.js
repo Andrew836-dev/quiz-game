@@ -10,8 +10,6 @@ var startButtonEl = document.createElement('button');
 var state, highList;
 // these variables are initialised in start()
 var score, currentQuestion, totalSeconds, timer, questions;
-// these variables are initialised when they are called in handleClick 
-var timeOut;
 // these variables are initialised in addHighScore
 var newHigh;
 
