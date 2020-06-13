@@ -12,7 +12,6 @@ This is homework for week 4 of my coding bootcamp. The goal is to use javascript
 ![Image of small sized phone, question](./img/quizzer-small-phone.png "small sized phone, question")
 ![Image of small sized phone rotated, question](./img/quizzer-small-phone-sideways.png "small sized phone rotated, question")
 ![Image of a standard Iphone rotated view](./img/quizzer-iphone-preview.png "rotated Iphone view")
-![Image of one question, showing widescreen layout, timer and score](./img/quizzer-widescreen.png "Final appearance")
 ## How does it work?
 I chose to make a basic page of HTML elements and then some document.createElement instructions in the Javascript. Every time the user clicks an option the inner html of the question-list div is completely cleared and any required components are created or altered as needed and then appended.
 
