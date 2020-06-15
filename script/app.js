@@ -6,6 +6,7 @@ var infoTextEl = document.getElementById('info-text');
 var scoreEl = document.getElementById('score-text');
 var timeEl = document.getElementById('time-text');
 var startButtonEl = document.createElement('button');
+var textInputEl = document.getElementById('name-input');
 // these variables are initialised in init()
 var state, highList;
 // these variables are initialised in start()
@@ -25,6 +26,7 @@ function retrievHighScores() {
 
 // menu to begin the game
 function init() {
+    textInputEl.value = "";
     highList = retrievHighScores();
     // sets state for delegation
     state = "start-menu";
@@ -47,7 +49,6 @@ function init() {
 function endScreen() {
     var finalCorrectDisplay = document.createElement('li');
     var finalScoreDisplay = document.createElement('li');
-    var nameField = document.createElement('input');
     var informativeText = document.createElement('p');
     // this makes sure that clicking the li objects does nothing
     state = "end-screen";
@@ -62,11 +63,12 @@ function endScreen() {
     finalCorrectDisplay.textContent = `Your final correct answer score was ${score} out of ${questions.length}`;
     finalScoreDisplay.textContent = `Plus ${totalSeconds} for your remaining time. ${totalSeconds + score} points!`;
     informativeText.textContent = "Enter your initials to view high scores.";
-    nameField.setAttribute("type", "text")
+    startButtonEl.textContent = "Submit";
     questionList.appendChild(finalCorrectDisplay);
     questionList.appendChild(finalScoreDisplay);
-    questionList.appendChild(nameField);
+    questionList.appendChild(textInputEl);
     questionList.appendChild(informativeText);
+    questionList.appendChild(startButtonEl);
 }
 
 function renderQuestion(index) {
@@ -190,19 +192,21 @@ function chooseNextQuestion() {
     currentQuestion++;
     if (currentQuestion < questions.length) {
         renderQuestion(currentQuestion);
+        state = "playing";
     }
     else {
         endScreen();
     }
-    state = "playing";
 }
 
 function handleKey(event) {
-    if (state == "end-screen" && event.target.matches('input')) {
+    if (state == "end-screen") {
         // keyCode 13 is the enter key
         if (event.keyCode == 13) {
-            addHighScore(event.target.value.trim());
-            displayHighScore();
+            if (textInputEl.value.trim() !== "") {
+                addHighScore(textInputEl.value.trim());
+                displayHighScore();
+            }
         }
     }
 }
@@ -224,6 +228,12 @@ function handleClick(event) {
             }
             // to go to the home menu
             init();
+        }
+        else if (state == 'end-screen') {
+            if (textInputEl.value.trim() !== "") {
+                addHighScore(textInputEl.value.trim());
+                displayHighScore();
+            }
         }
     }
     // This bit is for answering quiz questions
